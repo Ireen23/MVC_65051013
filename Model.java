@@ -12,6 +12,8 @@ public class Model {
     private boolean isCheating; // ทีมวัวดำโกง
     private boolean isHumble; // ทีมวัวขาวถ่อมตัว
     private int currentPins = 10; // จำนวนพินที่เหลือในแต่ละรอบ
+    private int[] firstRolls = new int[10]; // เพิ่มสำหรับเก็บค่า firstRoll
+
 
     public Model(String name, String team, boolean isCheating, boolean isHumble) {
         this.name = name;
@@ -23,6 +25,8 @@ public class Model {
     public void rollBowling() {
         Random random = new Random();
         int firstRoll = random.nextInt(currentPins + 1); // การโยนครั้งแรก
+        
+        firstRolls[currentRound] = firstRoll; // บันทึกค่า firstRoll
 
         // ทีมวัวดำโกง (20% โอกาสโกหกว่าโบลว์ลิ่งล้มทั้งหมด)
         if (isCheating && random.nextDouble() < 0.2) {
@@ -106,5 +110,7 @@ public class Model {
     public int[] getScores() {
         return scores;
     }
-
+public int getFirstRoll(int round) {
+    return firstRolls[round];
+}
 }

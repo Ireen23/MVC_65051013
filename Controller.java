@@ -46,7 +46,9 @@ public class Controller {
                 view.displayMessage("Round " + round + ":");
                 for (Model cow : cows) {
                     cow.rollBowling();
-                    view.displayMessage(cow.getName() + " (" + cow.getTeam() + ") scored " + cow.getScores()[round - 1] + " points.");
+                    int firstRoll = cow.getFirstRoll(round - 1);
+                    int score = cow.getScores()[round - 1];
+                    view.displayMessage(cow.getName() + " (" + cow.getTeam() + ") First Roll: " + firstRoll + " scored " + score + " points.");
                 }
             }
 
@@ -112,3 +114,4 @@ public class Controller {
         }
     }
 }
+
